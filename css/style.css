@@ -1,0 +1,183 @@
+html,body {
+    font-family: "Noto Sans TC", sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    height: 100%;
+    overflow: hidden;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f85f5f;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+h3{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    font-weight: bold;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+hr{
+    border: 1px solid #000; 
+    margin: 0px 10px;
+}
+  
+p {
+    color: #f85f5f;
+    font-size: 1em;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+text{
+    color: #000000;
+    font-size: 1em;
+}
+
+.text-box{
+    padding:10px;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+  
+button {
+    margin: 15px 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 95%;
+}
+
+button:hover {
+    background-color: #0056b3; /* 改變背景顏色 */
+}
+
+button:active {
+    transform: scale(0.95); /* 縮小按鈕，模擬被按下的效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 減少陰影強度 */
+}
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%; /* 依你需要的高度 */
+    background-color: #f0f0f0;
+}
+
+.container {
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.focus-box {
+    height: 100%;
+    background-color: #ffffff; /* 白色背景 */
+    border-radius: 12px; /* 圓角 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 陰影 */
+    max-width: 600px;
+    width: 80%;
+    text-align: center;
+  }
+
+.IdInpt-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 5px;
+} 
+
+.IdInpt-group{
+      gap: 4px; /* 讓 label 和 select 之間有些間距 */
+}
+
+label{
+    font-size: 1em;
+}
+
+
+select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* 增加選單的互動感 */
+select:hover {
+    border-color: #4CAF50;
+    background-color: #e9e9e9;
+}
+
+.log{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.data{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%; /* 設置表格寬度填滿 */
+    border-collapse: collapse; /* 移除表格間的空隙 */
+    margin: 20px auto;
+}
+
+td{
+    text-align: center; /* 水平置中 */
+    vertical-align: middle; /* 垂直置中 */
+}
+
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #333;
+}
