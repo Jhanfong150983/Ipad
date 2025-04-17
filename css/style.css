@@ -103,25 +103,16 @@ header{
 }
 
 .container {
-    height: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 960px;
+    width: 100%;
+    max-width: 800px; /* 根據需要設置適合的最大寬度 */
     margin: 0 auto;
     padding: 20px;
 }
 
 .focus-box {
-    height: 100%;
-    background-color: #ffffff; /* 白色背景 */
-    border-radius: 12px; /* 圓角 */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 陰影 */
-    max-width: 600px;
-    width: 80%;
-    text-align: center;
-  }
-
+    width: 100%; /* 保持容器寬度 */
+    max-width: 600px; /* 確保框框不會過大 */
+}
 .IdInpt-container{
     display: flex;
     flex-direction: row;
