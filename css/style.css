@@ -103,15 +103,25 @@ header{
 }
 
 .container {
-    width: 100%;
-    max-width: 800px; /* 根據需要設置適合的最大寬度 */
+    height: auto; /* 讓容器高度根據內容增長 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 960px;
     margin: 0 auto;
     padding: 20px;
 }
 
 .focus-box {
-    width: 100%; /* 保持容器寬度 */
-    max-width: 600px; /* 確保框框不會過大 */
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff; /* 白色背景 */
+    border-radius: 12px; /* 圓角 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 陰影 */
+    padding: 20px; /* 添加內邊距，讓內容不緊貼邊框 */
+    text-align: center;
+    height: auto; /* 讓高度根據內容自動增長 */
+    min-height: 200px; /* 可以設定最小高度，防止框框過小 */
 }
 .IdInpt-container{
     display: flex;
