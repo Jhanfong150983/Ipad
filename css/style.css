@@ -1,3 +1,14 @@
+@media (max-width: 768px) {
+    .IdInpt-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
 html,body {
     font-family: "Noto Sans TC", sans-serif;
     background-color: #f9f9f9;
