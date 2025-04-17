@@ -121,12 +121,3 @@ function sendDataToGoogleSheet() {
             document.getElementById('loading-overlay').style.display = 'none';
         });
 }
-
-function checkOrientation() {
-    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-    document.getElementById("rotate-warning").style.display = isPortrait ? "none" : "flex";
-  }
-
-  window.addEventListener("resize", checkOrientation);
-  window.addEventListener("orientationchange", checkOrientation);
-  window.addEventListener("load", checkOrientation);
