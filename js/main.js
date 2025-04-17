@@ -100,7 +100,7 @@ function sendDataToGoogleSheet() {
 
     const tabletFullCode = `${tabletCode}-${tabletNumber}`;
 
-    const baseUrl = "https://script.google.com/macros/s/AKfycbwuBfcnJrHjVU2-1hdVPVWMtC1z0i5itsCXQpo7JhCQHBvmYsWh6Bz3fbUi6ETUWz0A/exec";
+    const baseUrl = "https://script.google.com/macros/s/AKfycbxD_E9hiZxXDaGaMXlwKZauwOGQaB3vq8NrN5oKiMAML2175CcgbcSZ0revElB9MnwZ/exec";
     const url = `${baseUrl}?action=appendData&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&grade=${encodeURIComponent(grade)}&class=${encodeURIComponent(classNum)}&seatNumber=${encodeURIComponent(seatNumber)}&tabletCode=${encodeURIComponent(tabletFullCode)}&status=${encodeURIComponent(status)}`;
 
     console.log(`請求的 URL: ${url}`);
