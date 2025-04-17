@@ -41,7 +41,9 @@ document.querySelector('button').addEventListener('click', function(){
         現有送出按鈕.remove();
     }
 
-    document.querySelector('hr').insertAdjacentHTML('afterend', 結果文字);
+    // 插入到 .focus-box 內
+    const focusBox = document.querySelector('.focus-box');
+    focusBox.insertAdjacentHTML('beforeend', 結果文字);
     
     const 資訊區塊 = document.getElementById('資訊區塊');
 
