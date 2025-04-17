@@ -8,7 +8,7 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
     const startTime = times[0];
     const endTime = times[1];
 
-    const baseUrl = "https://script.google.com/macros/s/AKfycbxBSNEKHGdKxh-uGRIV5tDpAjnj3RhSgQP3BJoDQDR5-NUN7VIoK4dGK7gfFG0esRiX/exec";
+    const baseUrl = "https://script.google.com/macros/s/AKfycbwuBfcnJrHjVU2-1hdVPVWMtC1z0i5itsCXQpo7JhCQHBvmYsWh6Bz3fbUi6ETUWz0A/exec";
     const url = `${baseUrl}?action=filterData&date=${encodeURIComponent(date)}&grade=${grade}&class=${classNum}&start_time=${startTime}&end_time=${endTime}`;
     console.log(`請求的 URL: ${url}`);
 
