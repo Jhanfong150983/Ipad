@@ -123,3 +123,9 @@ function sendDataToGoogleSheet() {
             document.getElementById('loading-overlay').style.display = 'none';
         });
 }
+
+// 等待使用者點擊遮罩
+document.getElementById('overlay').addEventListener('click', function () {
+// 隱藏遮罩
+this.style.display = 'none';
+});
