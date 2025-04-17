@@ -127,6 +127,7 @@ header{
     align-items: center;
     gap: 20px;
     padding-left: 20px;
+    flex-wrap: wrap;
     padding-right: 5px;
 } 
 
