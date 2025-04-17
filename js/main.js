@@ -1,3 +1,9 @@
+// 等待使用者點擊遮罩
+document.getElementById('overlay').addEventListener('click', function () {
+// 隱藏遮罩
+this.style.display = 'none';
+});
+
 // 監聽文件中button按下
 document.querySelector('button').addEventListener('click', function(){
     this.disabled = true;
@@ -123,9 +129,3 @@ function sendDataToGoogleSheet() {
             document.getElementById('loading-overlay').style.display = 'none';
         });
 }
-
-// 等待使用者點擊遮罩
-document.getElementById('overlay').addEventListener('click', function () {
-// 隱藏遮罩
-this.style.display = 'none';
-});
