@@ -189,8 +189,12 @@
                 借用平板登記資料查詢
             </a>
         </footer>
-
-        <script src="js/main.js" defer></script> <!-- 連結 JS -->
+        // 等待使用者點擊遮罩
+        document.getElementById('overlay').addEventListener('click', function () {
+            // 隱藏遮罩
+            this.style.display = 'none';
+        });
+        <script src="js/main.js" defer></script> 
           
     </body>
 </html>
