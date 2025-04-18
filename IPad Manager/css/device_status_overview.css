@@ -1,0 +1,56 @@
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(37, 45px);  /* 1~36列 + 標題 */
+    gap: 4px;
+    justify-content: center;
+    grid-template-rows: repeat(13, 45px);  /* 12行 + 標題 */
+  }
+
+  .row-label, .column-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9d4bc;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    height: 40px;
+    width: 40px;
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:#e9d4bc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .green { background-color: #28a745; }    /* 正常 */
+  .yellow { background-color: #ffc107; }   /* 小裂痕 */
+  .red { background-color: #dc3545; }      /* 嚴重異常 */
+  .empty { background-color:#cfc4b7; }       /* 無資料 */
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    top: 45px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px;
+    font-size: 0.75rem;
+    border-radius: 5px;
+    z-index: 10;
+    white-space: pre-line;
+    text-align: left;
+    min-width: 180px;  /* 設置最小寬度，根據需求調整 */
+    max-width: 500px;  /* 設置最大寬度，根據需求調整 */
+    word-wrap: break-word;  /* 允許文字換行 */
+  }
+
+  .cell:hover .tooltip {
+    display: block;
+  }
