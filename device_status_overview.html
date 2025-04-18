@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關埔國小平板借用登記系統</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- 連結 CSS -->
+    <link rel="stylesheet" href="css/device_status_overview.css"> <!-- 連結 CSS -->
+</head>
+<body>
+    <header>
+        <h1>關埔國小平板的即時狀態總覽</h1>
+    </header>
+    <div class="grid" id="grid">
+        <!-- 這裡將由 JavaScript 動態生成內容 -->
+      </div>
+
+      <footer style="text-align: center; margin-top: 20px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; text-decoration: none; color: #3367d6; font-size: 18px;">
+            <img src="https://fonts.gstatic.com/s/i/materialicons/home/v10/24px.svg" alt="Home Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+            回首頁
+        </a>
+    </footer>
+
+      <script>
+        const correctPassword = "jhanfong831509"; // ✅ 自訂密碼
+    
+        function checkPassword() {
+          const input = prompt("請輸入密碼：");
+          if (input !== correctPassword) {
+            alert("密碼錯誤，將返回首頁。");
+            window.location.href = "index.html"; // 回首頁
+          }
+        }
+        
+        window.onload = checkPassword;
+      </script>
+      <script src="js/device_status_overview.js" defer></script>
+      
+      </body>
+      </html>
+      
