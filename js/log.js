@@ -20,29 +20,71 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
         return response.json();
     })
     .then(data => {
-        // 按照座號進行排序
-        data.sort((a, b) => {
-            return a.座號 - b.座號; // 假設座號是數字，如果座號是字符串，可以使用 a.座號.localeCompare(b.座號) 來排序
-        });
-
+        data.sort((a, b) => a.座號 - b.座號);
+    
         const table = document.getElementById('結果表格');
-        table.innerHTML = ''; // 清空舊資料
-
+        table.innerHTML = ''; // 清空舊資料（只清 <tbody> 的內容即可）
+    
+        const seenSeatNumbers = new Set();
+        const seenDeviceNumbers = new Set();
+    
         if (data.length === 0) {
             const noDataMessage = document.createElement('tr');
-            noDataMessage.innerHTML = `<td colspan="3">目前無任何資料</td>`;
+            noDataMessage.innerHTML = `<td colspan="4">目前無任何資料</td>`;
             table.appendChild(noDataMessage);
         } else {
             data.forEach(record => {
                 const tr = document.createElement('tr');
+    
+                let warnings = [];
+    
+                if (seenSeatNumbers.has(record.座號)) {
+                    warnings.push('⚠️ 座號重複');
+                } else {
+                    seenSeatNumbers.add(record.座號);
+                }
+    
+                if (seenDeviceNumbers.has(record.平板序號)) {
+                    warnings.push('⚠️ 平板序號重複');
+                } else {
+                    seenDeviceNumbers.add(record.平板序號);
+                }
+    
+                const warningText = warnings.join('；');
+    
                 tr.innerHTML = `
                     <td>${record.座號}</td>
                     <td>${record.平板序號}</td>
                     <td>${record.平板狀況}</td>
+                    <td style="color: red; font-weight: bold;">${warningText}</td>
                 `;
+    
+                if (warnings.length > 0) {
+                    tr.style.backgroundColor = '#fdd'; // 加上淡紅色底
+                }
+    
                 table.appendChild(tr);
+                // === 偵測缺漏座號 ===
+                const seatNumbers = Array.from(seenSeatNumbers).map(Number).sort((a, b) => a - b);
+                const missingSeats = [];
+                const min = seatNumbers[0];
+                const max = seatNumbers[seatNumbers.length - 1];
+
+                for (let i = min; i <= max; i++) {
+                    if (!seenSeatNumbers.has(i)) {
+                    missingSeats.push(i);
+                    }
+                }
+
+                // 顯示在上方 div 中
+                const warningDiv = document.getElementById('缺漏警示');
+                if (missingSeats.length > 0) {
+                    warningDiv.innerText = `⚠️ 缺少座號：${missingSeats.join('、')}`;
+                } else {
+                    warningDiv.innerText = ''; // 沒有缺號就清空
+                }
             });
         }
-    })
+    })    
     .catch(error => console.error('錯誤：', error));
 });
