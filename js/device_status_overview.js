@@ -27,8 +27,10 @@ fetch("https://script.google.com/macros/s/AKfycbwb-mFgkGFY9_TPCGHoAT80SzzVVDDwxq
         status = 'green';
       } else if (row["最後狀況"].includes("小裂痕")) {
         status = 'yellow';
-      } else if (row["最後狀況"].includes("破裂") || row["異常狀況警示"] === "異常") {
+      } else if (row["最後狀況"].includes("碎片")) {
         status = 'red';
+      } else if (row["最後狀況"].includes("破洞")) {
+        status = 'linear';
       }
       lookup[id] = {
         status,
