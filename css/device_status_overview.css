@@ -33,6 +33,7 @@
   .yellow { background-color: #ffc107; }   /* 小裂痕 */
   .red { background-color: #dc3545; }      /* 嚴重異常 */
   .empty { background-color:#cfc4b7; }       /* 無資料 */
+  .linear{background: linear-gradient(135deg, #ff0000, #8b0000);}
 
   .tooltip {
     display: none;
