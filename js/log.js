@@ -7,6 +7,8 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
     const times = time.split('-');
     const startTime = times[0];
     const endTime = times[1];
+    
+    document.getElementById('loading-overlay').style.display = 'flex';  // 顯示 loading 畫面
 
     const baseUrl = "https://script.google.com/macros/s/AKfycbwb-mFgkGFY9_TPCGHoAT80SzzVVDDwxqWEs-3-_vkFMzCSRBlximWAT1ffsAJa3yCC/exec";
     const url = `${baseUrl}?action=filterData&date=${encodeURIComponent(date)}&grade=${grade}&class=${classNum}&start_time=${startTime}&end_time=${endTime}`;
@@ -85,6 +87,8 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
                 }
             });
         }
+        document.getElementById('loading-overlay').style.display = 'none';
     })    
     .catch(error => console.error('錯誤：', error));
+    document.getElementById('loading-overlay').style.display = 'none';
 });
