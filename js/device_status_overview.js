@@ -25,13 +25,11 @@ fetch("https://script.google.com/macros/s/AKfycbwb-mFgkGFY9_TPCGHoAT80SzzVVDDwxq
       let status = 'empty';
       if (row["最後狀況"].includes("正常")) {
         status = 'green';
-      } else if (row["最後狀況"].includes("小裂痕")) {
+      } else if (row["最後狀況"].includes("不影響")) {
         status = 'yellow';
-      } else if (row["最後狀況"].includes("碎片")) {
+      } else if (row["最後狀況"].includes("危險")) {
         status = 'red';
-      } else if (row["最後狀況"].includes("破洞")) {
-        status = 'linear';
-      }
+      } 
       lookup[id] = {
         status,
         info: 
