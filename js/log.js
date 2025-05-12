@@ -8,12 +8,13 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
     const startTime = times[0];
     const endTime = times[1];
     
-    document.getElementById('loading-overlay').style.display = 'flex';  // 顯示 loading 畫面
-
+    // 顯示 loading 畫面
+    document.getElementById('loading-overlay').style.display = 'flex';
+    
     const baseUrl = "https://script.google.com/macros/s/AKfycbwb-mFgkGFY9_TPCGHoAT80SzzVVDDwxqWEs-3-_vkFMzCSRBlximWAT1ffsAJa3yCC/exec";
     const url = `${baseUrl}?action=filterData&date=${encodeURIComponent(date)}&grade=${grade}&class=${classNum}&start_time=${startTime}&end_time=${endTime}`;
     console.log(`請求的 URL: ${url}`);
-
+    
     fetch(url)
     .then(response => {
         if (!response.ok) {
@@ -66,29 +67,34 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
                 }
     
                 table.appendChild(tr);
-                // === 偵測缺漏座號 ===
-                const seatNumbers = Array.from(seenSeatNumbers).map(Number).sort((a, b) => a - b);
-                const missingSeats = [];
-                const min = seatNumbers[0];
-                const max = seatNumbers[seatNumbers.length - 1];
-
-                for (let i = min; i <= max; i++) {
-                    if (!seenSeatNumbers.has(i)) {
-                    missingSeats.push(i);
-                    }
-                }
-
-                // 顯示在上方 div 中
-                const warningDiv = document.getElementById('缺漏警示');
-                if (missingSeats.length > 0) {
-                    warningDiv.innerText = `⚠️ 缺少座號：${missingSeats.join('、')}`;
-                } else {
-                    warningDiv.innerText = ''; // 沒有缺號就清空
-                }
             });
+            
+            // === 偵測缺漏座號 ===
+            const seatNumbers = Array.from(seenSeatNumbers).map(Number).sort((a, b) => a - b);
+            const missingSeats = [];
+            const min = seatNumbers[0];
+            const max = seatNumbers[seatNumbers.length - 1];
+            for (let i = min; i <= max; i++) {
+                if (!seenSeatNumbers.has(i)) {
+                    missingSeats.push(i);
+                }
+            }
+            
+            // 顯示在上方 div 中
+            const warningDiv = document.getElementById('缺漏警示');
+            if (missingSeats.length > 0) {
+                warningDiv.innerText = `⚠️ 缺少座號：${missingSeats.join('、')}`;
+            } else {
+                warningDiv.innerText = ''; // 沒有缺號就清空
+            }
         }
+        
+        // 在資料處理完成後隱藏 loading 畫面
         document.getElementById('loading-overlay').style.display = 'none';
     })    
-    .catch(error => console.error('錯誤：', error));
-    document.getElementById('loading-overlay').style.display = 'none';
+    .catch(error => {
+        console.error('錯誤：', error);
+        // 發生錯誤時也要隱藏 loading 畫面
+        document.getElementById('loading-overlay').style.display = 'none';
+    });
 });
