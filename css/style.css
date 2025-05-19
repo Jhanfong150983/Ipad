@@ -182,7 +182,6 @@ td{
 }
 
 #loading-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -190,9 +189,9 @@ td{
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 9999;
-    display: flex;          /* Added flex display */
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    display: none;          /* 初始狀態為隱藏 */
+    justify-content: center; /* 水平置中 */
+    align-items: center;     /* 垂直置中 */
 }
 
 .spinner {
