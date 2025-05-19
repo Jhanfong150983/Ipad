@@ -1,5 +1,18 @@
 // 監聽文件中button按下
 document.querySelector('button').addEventListener('click', function(){
+    //取所有的值
+    const 平板代號 = document.getElementById('平板代號').value;
+    const 平板號碼 = document.getElementById('平板號碼').value;
+    const 我的年級 = document.getElementById('我的年級').value;
+    const 我的班級 = document.getElementById('我的班級').value;
+    const 我的座號 = document.getElementById('我的座號').value;
+    const 平板狀況 = document.getElementById('平板狀況').value;
+
+    if (!平板代號 || !平板號碼 || !我的年級 || !我的班級 || !我的座號 || !平板狀況) {
+        alert("請填寫完整資訊");
+        return;
+    }
+    
     this.disabled = true;
     this.style.pointerEvents = 'none';
     this.style.backgroundColor = '#ccc';
@@ -9,14 +22,6 @@ document.querySelector('button').addEventListener('click', function(){
     下拉選單們.forEach(select => {
         select.disabled = true; 
     });
-
-    //取所有的值
-    const 平板代號 = document.getElementById('平板代號').value;
-    const 平板號碼 = document.getElementById('平板號碼').value;
-    const 我的年級 = document.getElementById('我的年級').value;
-    const 我的班級 = document.getElementById('我的班級').value;
-    const 我的座號 = document.getElementById('我的座號').value;
-    const 平板狀況 = document.getElementById('平板狀況').value;
     
     // 將結果文字加入網頁
     const 結果文字 = `
