@@ -8,6 +8,13 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
     const startTime = times[0];
     const endTime = times[1];
     
+    if (!grade || !classNum || !time) {
+        document.getElementById('缺漏警示').innerText = '請填寫所有必要欄位！';
+        return; // 如果有欄位未填，就不繼續執行
+    }
+    
+    document.getElementById('缺漏警示').innerText = ''; // 清除先前的警告
+    
     // 顯示 loading 畫面
     document.getElementById('loading-overlay').style.display = 'flex';
     
