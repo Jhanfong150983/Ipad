@@ -59,6 +59,16 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
                 } else {
                     seenDeviceNumbers.add(record.平板序號);
                 }
+
+                if (record.時間) {
+                    const 登記時間 = record.時間;
+                    // 查詢時段
+                    const 查詢開始 = startTime;
+                    const 查詢結束 = endTime;
+                    if (登記時間 < 查詢開始 || 登記時間 > 查詢結束) {
+                        warnings.push(`⚠️ 非本時段登記（${登記時間}）`);
+                    }
+                }
     
                 const warningText = warnings.join('；');
     
@@ -75,7 +85,7 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
     
                 table.appendChild(tr);
             });
-            
+            /*
             // === 偵測缺漏座號 ===
             const seatNumbers = Array.from(seenSeatNumbers).map(Number).sort((a, b) => a - b);
             const missingSeats = [];
@@ -94,6 +104,7 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
             } else {
                 warningDiv.innerText = ''; // 沒有缺號就清空
             }
+            */
         }
         
         // 在資料處理完成後隱藏 loading 畫面
