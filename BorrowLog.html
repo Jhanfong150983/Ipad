@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>關埔國小平板借用登記系統</title>
-        <link rel="stylesheet" href="css/style.css"> <!-- 連結 CSS -->
-    </head>
-    <body>
-        <header>
-            <h1>關埔國小平板借用登記資料查詢</h1>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關埔國小平板借用登記資料查詢</title>
+    <link rel="stylesheet" href="css/log.css"> <!-- 連結 CSS -->
+</head>
 
-        <main class="log">
-            <div class="IdInpt-container">    
-                <div class="IdInpt-group">
-                    <label for="年級">年級：</label>
-                    <select id="年級" required>
-                        <option value="" disabled selected>請選擇</option>
-                        <option value="3">03</option>
-                        <option value="4">04</option>
-                        <option value="5">05</option>
-                        <option value="6">06</option>
-                    </select>
-                </div>
+<body>
+    <header>
+        <h1>關埔國小平板借用登記資料查詢</h1>
+    </header>
 
-                <div class="IdInpt-group">
-                    <label for="班級">班級：</label>
-                    <select id="班級" required>
-                        <option value="" disabled selected>請選擇</option>
-                        <option value="1">01</option>
-                        <option value="2">02</option>
-                        <option value="3">03</option>
-                        <option value="4">04</option>
-                        <option value="5">05</option>
-                        <option value="6">06</option>
-                        <option value="7">07</option>
-                        <option value="8">08</option>
-                        <option value="9">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                    </select>
-                </div>
-
-                <div class="IdInpt-group">
-                    <label for="時段">時段：</label>
-                    <select id="時段" required>
-                        <option value="" disabled selected>請選擇</option>
-                        <option value="08:10-08:35">晨光時間(08:10~08:35)</option>
-                        <option value="08:35-09:20">第一節(08:35-09:20)</option>
-                        <option value="09:20-10:10">第二節(09:20-10:10)</option>
-                        <option value="10:10-11:10">第三節(10:10-11:10)</option>
-                        <option value="11:10-12:00">第四節(11:10-12:00)</option>
-                        <option value="12:00-13:20">午休時間(12:00-13:20)</option>
-                        <option value="13:20-14:10">第五節(13:20-14:10)</option>
-                        <option value="14:10-15:00">第六節(14:10-15:00)</option>
-                        <option value="15:00-15:55">第七節(15:00-15:55)</option>
-                    </select>
-                </div> 
-                <button id="查詢按鈕">查詢</button>
-            </div>    
-        </main>
-
-
-        <div id="缺漏警示" style="margin-bottom: 10px; color: red; font-weight: bold;"></div>
-
-        <main class="data">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>座號</th>
-                        <th>平板代號</th>
-                        <th>借用狀況</th>
-                        <th>異常資料</th>
-                    </tr>
-                </thead>
-                <tbody id="結果表格">
-                    <!-- 這裡會插入查詢結果 -->
-                </tbody>
-            </table>
-        </main>
-
-        <div id="loading-overlay">
-          <div class="spinner"></div>
-          資料送出中，請稍候...
+    <div class="query-panel">
+        <div class="form-group">
+            <label for="日期">日期：</label>
+            <input type="date" id="日期" required>
         </div>
 
-        <footer style="text-align: center; margin-top: 20px;">
-            <a href="index.html" style="display: inline-flex; align-items: center; text-decoration: none; color: #3367d6; font-size: 18px;">
-                <img src="https://fonts.gstatic.com/s/i/materialicons/home/v10/24px.svg" alt="Home Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-                回首頁
-            </a>
-        </footer>
+        <div class="form-group">
+            <label for="年級">年級：</label>
+            <select id="年級" required>
+                <option value="" disabled selected>請選擇</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+            </select>
+        </div>
 
-        <script src="js/log.js" defer></script> <!-- 連結 JS -->
-    </body>
+        <div class="form-group">
+            <label for="班級">班級：</label>
+            <select id="班級" required>
+                <option value="" disabled selected>請選擇</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="時段">時段：</label>
+            <select id="時段" required>
+                <option value="" disabled selected>請選擇</option>
+                <option value="08:10-08:35">晨光時間(08:10~08:35)</option>
+                <option value="08:35-09:20">第一節(08:35-09:20)</option>
+                <option value="09:20-10:10">第二節(09:20-10:10)</option>
+                <option value="10:10-11:10">第三節(10:10-11:10)</option>
+                <option value="11:10-12:00">第四節(11:10-12:00)</option>
+                <option value="12:00-13:20">午休時間(12:00-13:20)</option>
+                <option value="13:20-14:10">第五節(13:20-14:10)</option>
+                <option value="14:10-15:00">第六節(14:10-15:00)</option>
+                <option value="15:00-15:55">第七節(15:00-15:55)</option>
+            </select>
+        </div>
+        
+        <button id="查詢按鈕">查詢</button>
+    </div>
+
+    <div class="alert-box" id="缺漏警示"></div>
+
+    <div id="結果區域"></div>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        資料查詢中，請稍候...
+    </div>
+
+    <footer>
+        <a href="index.html">
+            <img src="https://fonts.gstatic.com/s/i/materialicons/home/v10/24px.svg" alt="Home Icon">
+            回首頁
+        </a>
+    </footer>
+
+    <script>
+        // 設定日期預設值為今天
+        document.getElementById('日期').valueAsDate = new Date();
+    </script>
+    <script src="js/log.js" defer></script>
+
+    <script>
+        const correctPassword = "in1969"; // ✅ 自訂密碼
+    
+        function checkPassword() {
+          const input = prompt("請輸入密碼：");
+          if (input !== correctPassword) {
+            alert("密碼錯誤，將返回首頁。");
+            window.location.href = "index.html"; // 回首頁
+          }
+        }
+        
+        window.onload = checkPassword;
+      </script>
+</body>
 </html>
