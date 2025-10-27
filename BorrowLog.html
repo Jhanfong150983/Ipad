@@ -87,19 +87,6 @@
         document.getElementById('日期').valueAsDate = new Date();
     </script>
     <script src="js/log.js" defer></script>
-
-    <script>
-        const correctPassword = "in1969"; // ✅ 自訂密碼
-    
-        function checkPassword() {
-          const input = prompt("請輸入密碼：");
-          if (input !== correctPassword) {
-            alert("密碼錯誤，將返回首頁。");
-            window.location.href = "index.html"; // 回首頁
-          }
-        }
-        
-        window.onload = checkPassword;
-      </script>
 </body>
+
 </html>
