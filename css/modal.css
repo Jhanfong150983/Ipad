@@ -1,0 +1,210 @@
+/* 模態框的樣式 */
+.modal {
+    display: none; /* 默認隱藏 */
+    position: fixed; /* 固定位置，覆蓋整個視窗 */
+    z-index: 1000; /* 確保在最上層顯示 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    display: flex !important; /* 使用 flex 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+}
+
+.modal-content {
+    background-color: #fff; /* 白色背景 */
+    padding: 20px; /* 內邊距 */
+    border-radius: 8px; /* 圓角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 陰影效果 */
+    text-align: center; /* 文字居中 */
+    max-width: 600px; /* 最大寬度 */
+    width: 90%; /* 響應式寬度 */
+    position: relative; /* 確保關閉按鈕正確定位 */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+/* 確保模態框正確顯示為懸浮視窗 */
+#資訊區塊 {
+    display: none; /* 默認隱藏 */
+    position: fixed; /* 固定位置，覆蓋整個視窗 */
+    z-index: 1000; /* 確保在最上層顯示 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    display: flex; /* 使用 flex 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content p {
+    margin: 20px 0;
+    font-size: 20px;  /* 加大文字 */
+    font-weight: 500;  /* 加粗 */
+    color: #333;
+    line-height: 1.8;
+}
+
+.modal-content p:last-of-type {
+    color: #ff6b6b;
+    font-weight: bold;
+    font-size: 22px;  /* 警告文字更大 */
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.modal-content button {
+    margin: 15px 8px 0;
+    padding: 8px 20px;  /* 縮小按鈕 */
+    font-size: 14px;  /* 縮小按鈕文字 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#錯誤退回按鈕 {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+#錯誤退回按鈕:hover {
+    background-color: #d0d0d0;
+}
+
+#確認送出按鈕 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#確認送出按鈕:hover {
+    background-color: #45a049;
+}
+
+/* 資訊長確認視窗樣式 */
+.info-chief-modal {
+    padding: 40px 35px !important;
+}
+
+.warning-text {
+    font-size: 24px !important;
+    color: #ff6b6b !important;
+    font-weight: bold !important;
+    margin-bottom: 25px !important;
+}
+
+/* 資訊顯示區塊 */
+.info-display {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 4px solid #4CAF50;
+}
+
+.info-display p {
+    margin: 12px 0 !important;
+    font-size: 18px !important;
+    text-align: left !important;
+    color: #333 !important;
+}
+
+.info-display strong {
+    color: #555;
+}
+
+.status-text {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.instruction-text {
+    font-size: 18px !important;
+    color: #555 !important;
+    margin: 15px 0 !important;
+}
+
+.password-section {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.password-section label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.password-section input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    width: 200px;
+    text-align: center;
+}
+
+.password-section input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#資訊長退回按鈕 {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 10px 25px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#資訊長退回按鈕:hover {
+    background-color: #ff5252;
+}
+
+#資訊長確認按鈕 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 25px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#資訊長確認按鈕:hover {
+    background-color: #45a049;
+}

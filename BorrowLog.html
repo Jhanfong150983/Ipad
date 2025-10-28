@@ -83,10 +83,33 @@
     </footer>
 
     <script>
-        // 設定日期預設值為今天
-        document.getElementById('日期').valueAsDate = new Date();
+        // 初始化下拉選單的禁用狀態
+        window.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('年級').disabled = true;
+            document.getElementById('班級').disabled = true;
+            document.getElementById('時段').disabled = true;
+            
+            // 設定日期預設值為今天並觸發change事件
+            const dateInput = document.getElementById('日期');
+            dateInput.valueAsDate = new Date();
+            // 等待一小段時間後觸發change事件，確保所有腳本都已載入
+            setTimeout(() => dateInput.dispatchEvent(new Event('change')), 100);
+        });
     </script>
     <script src="js/log.js" defer></script>
+    <script>
+        const correctPassword = "in1969"; // ✅ 自訂密碼
+    
+        function checkPassword() {
+          const input = prompt("請輸入密碼：");
+          if (input !== correctPassword) {
+            alert("密碼錯誤，將返回首頁。");
+            window.location.href = "index.html"; // 回首頁
+          }
+        }
+        
+        window.onload = checkPassword;
+      </script>
 </body>
 
 </html>

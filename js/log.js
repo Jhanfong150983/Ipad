@@ -1,4 +1,109 @@
-        document.getElementById('查詢按鈕').addEventListener('click', function() {
+function removeOldListeners(element, eventName) {
+    const oldElement = element.cloneNode(true);
+    element.parentNode.replaceChild(oldElement, element);
+    return oldElement;
+}
+
+// 時段對照表
+const timeSlots = [
+    {value: "08:10-08:35", text: "晨光時間(08:10~08:35)"},
+    {value: "08:35-09:20", text: "第一節(08:35-09:20)"},
+    {value: "09:20-10:10", text: "第二節(09:20-10:10)"},
+    {value: "10:10-11:10", text: "第三節(10:10-11:10)"},
+    {value: "11:10-12:00", text: "第四節(11:10-12:00)"},
+    {value: "12:00-13:20", text: "午休時間(12:00-13:20)"},
+    {value: "13:20-14:10", text: "第五節(13:20-14:10)"},
+    {value: "14:10-15:00", text: "第六節(14:10-15:00)"},
+    {value: "15:00-15:55", text: "第七節(15:00-15:55)"}
+];
+
+// 當日期改變時更新選項
+document.getElementById('日期').addEventListener('change', async function() {
+    const selectedDate = this.value;
+    const date = selectedDate.replace(/-/g, '/');
+    
+    // 重設並禁用其他下拉選單
+    const gradeSelect = document.getElementById('年級');
+    const classSelect = document.getElementById('班級');
+    const timeSelect = document.getElementById('時段');
+    
+    gradeSelect.value = '';
+    classSelect.value = '';
+    timeSelect.value = '';
+    
+    classSelect.disabled = true;
+    timeSelect.disabled = true;
+    
+    document.getElementById('loading-overlay').style.display = 'flex';
+    
+    const baseUrl = "https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec";
+    const url = `${baseUrl}?action=getAvailableOptions&date=${encodeURIComponent(date)}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP 錯誤！狀態碼: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // 更新年級選項
+        const grades = [...new Set(data.map(item => item.年級))].sort((a, b) => Number(a) - Number(b));
+        gradeSelect.innerHTML = '<option value="" disabled selected>請選擇</option>';
+        grades.forEach(grade => {
+            gradeSelect.innerHTML += `<option value="${grade}">${grade.padStart(2, '0')}</option>`;
+        });
+        gradeSelect.disabled = false;
+        
+        // 當年級改變時更新班級選項
+        gradeSelect.addEventListener('change', function() {
+            const selectedGrade = this.value;
+            classSelect.disabled = false;
+            timeSelect.disabled = true;
+            timeSelect.value = '';
+            
+            const classes = [...new Set(data
+                .filter(item => item.年級 === selectedGrade)
+                .map(item => item.班級))]
+                .sort((a, b) => Number(a) - Number(b));
+            
+            classSelect.innerHTML = '<option value="" disabled selected>請選擇</option>';
+            classes.forEach(classNum => {
+                classSelect.innerHTML += `<option value="${classNum}">${classNum.padStart(2, '0')}</option>`;
+            });
+        });
+        
+        // 當班級改變時更新時段選項
+        classSelect.addEventListener('change', function() {
+            const selectedGrade = document.getElementById('年級').value;
+            const selectedClass = this.value;
+            timeSelect.disabled = false;
+            
+            const availableTimes = new Set(data
+                .filter(item => item.年級 === selectedGrade && item.班級 === selectedClass)
+                .map(item => item.時段));
+            
+            timeSelect.innerHTML = '<option value="" disabled selected>請選擇</option>';
+            // 依照預定義順序顯示可用的時段
+            timeSlots.forEach(slot => {
+                const [slotStart, slotEnd] = slot.value.split('-');
+                const isAvailable = Array.from(availableTimes).some(time => {
+                    return time >= slotStart && time <= slotEnd;
+                });
+    
+                if (isAvailable) {
+                    timeSelect.innerHTML += `<option value="${slot.value}">${slot.text}</option>`;
+                }
+            });
+        });
+    } catch (error) {
+        console.error('錯誤：', error);
+        alert('取得資料時發生錯誤，請稍後再試');
+    } finally {
+        document.getElementById('loading-overlay').style.display = 'none';
+    }
+});
+
+document.getElementById('查詢按鈕').addEventListener('click', function() {
             const selectedDate = document.getElementById('日期').value;
             const grade = document.getElementById('年級').value;
             const classNum = document.getElementById('班級').value;
@@ -20,7 +125,7 @@
             document.getElementById('缺漏警示').style.display = 'none';
             document.getElementById('loading-overlay').style.display = 'flex';
             
-            const baseUrl = "https://script.google.com/macros/s/AKfycbyhQ4B6YChFqMwDGztNYybfmBYFpp1m_Wq2aqFq6sXENSukvbEQYGmO6KgfyVg4eBdX/exec";
+            const baseUrl = "https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec";
             const url = `${baseUrl}?action=filterData&date=${encodeURIComponent(date)}&grade=${grade}&class=${classNum}&start_time=${startTime}&end_time=${endTime}`;
             
             fetch(url)

@@ -15,7 +15,7 @@ columns.forEach(col => {
 });
 
 // 從 Google Apps Script 取得資料
-fetch("https://script.google.com/macros/s/AKfycbyhQ4B6YChFqMwDGztNYybfmBYFpp1m_Wq2aqFq6sXENSukvbEQYGmO6KgfyVg4eBdX/exec?action=getSummary")
+fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec?action=getSummary")
   .then(response => response.json())
   .then(data => {
     // 將資料轉為 lookup 結構，例如 A-01: {...}
