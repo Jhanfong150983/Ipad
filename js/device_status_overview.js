@@ -25,9 +25,9 @@ fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrK
       let status = 'empty';
       if (row["最後狀況"].includes("正常")) {
         status = 'green';
-      } else if (row["最後狀況"].includes("輕微異常")) {
+      } else if (row["最後狀況"].includes("還可以用")) {
         status = 'yellow';
-      } else if (row["最後狀況"].includes("危險")) {
+      } else if (row["最後狀況"].includes("送修")) {
         status = 'red';
       } 
       lookup[id] = {
@@ -63,4 +63,5 @@ fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrK
   .catch(err => {
     console.error("資料載入失敗：", err);
   });
+
 
