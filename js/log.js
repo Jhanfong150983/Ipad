@@ -36,7 +36,7 @@ document.getElementById('日期').addEventListener('change', async function() {
     
     document.getElementById('loading-overlay').style.display = 'flex';
     
-    const baseUrl = "https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec";
+    const baseUrl = "https://script.google.com/macros/s/AKfycbydLQfP_riu9PYQI7wzf1sxH9qIjeBKmLc4g42tPRYDGGkb_61dSIBp2NS1ku2Lxi2t/exec";
     const url = `${baseUrl}?action=getAvailableOptions&date=${encodeURIComponent(date)}`;
     
     try {
@@ -125,7 +125,7 @@ document.getElementById('查詢按鈕').addEventListener('click', function() {
             document.getElementById('缺漏警示').style.display = 'none';
             document.getElementById('loading-overlay').style.display = 'flex';
             
-            const baseUrl = "https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec";
+            const baseUrl = "https://script.google.com/macros/s/AKfycbydLQfP_riu9PYQI7wzf1sxH9qIjeBKmLc4g42tPRYDGGkb_61dSIBp2NS1ku2Lxi2t/exec";
             const url = `${baseUrl}?action=filterData&date=${encodeURIComponent(date)}&grade=${grade}&class=${classNum}&start_time=${startTime}&end_time=${endTime}`;
             
             fetch(url)

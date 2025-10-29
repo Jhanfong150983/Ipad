@@ -15,21 +15,29 @@ columns.forEach(col => {
 });
 
 // 從 Google Apps Script 取得資料
-fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrKHkL3WWY5Rj6WUk11sgDgMfTNNL1jinOY7a/exec?action=getSummary")
+fetch("https://script.google.com/macros/s/AKfycbydLQfP_riu9PYQI7wzf1sxH9qIjeBKmLc4g42tPRYDGGkb_61dSIBp2NS1ku2Lxi2t/exec?action=getSummary")
   .then(response => response.json())
   .then(data => {
-    // 將資料轉為 lookup 結構，例如 A-01: {...}
+    // 加入更多的 log 來記錄 API 返回的完整資料以及處理過程中的細節
+    console.log("從 API 獲取的完整資料:", data); // 記錄 API 返回的完整資料
+
     const lookup = {};
     data.forEach(row => {
       const id = row["平板序號"]; // 比如 A-01
       let status = 'empty';
-      if (row["最後狀況"].includes("正常")) {
+
+      // 標準化最後狀況的值
+      const lastStatus = row["最後狀況"].trim().toLowerCase();
+      console.log(`處理中的平板序號: ${id}, 最後狀況: ${row["最後狀況"]}, 標準化後: ${lastStatus}`); // 詳細記錄每個平板的狀況
+
+      if (lastStatus.includes("正常")) {
         status = 'green';
-      } else if (row["最後狀況"].includes("還可以用")) {
+      } else if (lastStatus.includes("還可以用")) {
         status = 'yellow';
-      } else if (row["最後狀況"].includes("送修")) {
+      } else if (lastStatus.includes("送修")) {
         status = 'red';
-      } 
+      }
+
       lookup[id] = {
         status,
         info: 
@@ -38,6 +46,8 @@ fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrK
         `借用人：${row["年級"]}年${row["班級"]}班${row["座號"]}號`
       };
     });
+
+    console.log("處理後的 lookup 資料:", lookup); // 記錄處理後的 lookup 資料
 
     // 顯示每一列
     rows.forEach(row => {
@@ -63,5 +73,3 @@ fetch("https://script.google.com/macros/s/AKfycbwGWDCZhHUU7sTRvPEewA7LtSrdbFJRrK
   .catch(err => {
     console.error("資料載入失敗：", err);
   });
-
-

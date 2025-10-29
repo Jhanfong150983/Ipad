@@ -103,6 +103,15 @@
     background-color: #45a049;
 }
 
+#重複確認送出按鈕 {
+    background-color: #8f8f8f;
+    color: white;
+}
+
+#重複確認送出按鈕:hover {
+    background-color: #8f8f8f;
+}
+
 /* 資訊長確認視窗樣式 */
 .info-chief-modal {
     padding: 40px 35px !important;
