@@ -93,6 +93,56 @@ document.querySelector('button').addEventListener('click', function(){
     });
 });
 
+// 判斷時間是否在同一時段
+function 檢查是否同一時段(前一筆時間) {
+    // 定義時段範圍 (格式: HH:MM)
+    const 時段表 = [
+        { 名稱: "第一節", 開始: "08:20", 結束: "09:05" },
+        { 名稱: "第二節", 開始: "09:15", 結束: "10:00" },
+        { 名稱: "第三節", 開始: "10:10", 結束: "10:55" },
+        { 名稱: "第四節", 開始: "11:05", 結束: "11:50" },
+        { 名稱: "第五節", 開始: "13:10", 結束: "13:55" },
+        { 名稱: "第六節", 開始: "14:05", 結束: "14:50" },
+        { 名稱: "第七節", 開始: "15:00", 結束: "15:45" },
+        { 名稱: "第八節", 開始: "15:55", 結束: "16:40" }
+    ];
+    
+    // 將時間字串轉換為分鐘數 (方便比較)
+    function 時間轉分鐘(時間字串) {
+        const [時, 分] = 時間字串.split(':').map(Number);
+        return 時 * 60 + 分;
+    }
+    
+    // 判斷某個時間在哪個時段
+    function 取得時段(時間字串) {
+        const 分鐘數 = 時間轉分鐘(時間字串);
+        
+        for (const 時段 of 時段表) {
+            const 開始分鐘 = 時間轉分鐘(時段.開始);
+            const 結束分鐘 = 時間轉分鐘(時段.結束);
+            
+            if (分鐘數 >= 開始分鐘 && 分鐘數 <= 結束分鐘) {
+                return 時段.名稱;
+            }
+        }
+        
+        return "非上課時段";
+    }
+    
+    // 取得現在的時間
+    const 現在 = new Date();
+    const 現在時間 = `${現在.getHours().toString().padStart(2, '0')}:${現在.getMinutes().toString().padStart(2, '0')}`;
+    
+    const 前一筆時段 = 取得時段(前一筆時間);
+    const 現在時段 = 取得時段(現在時間);
+    
+    console.log('前一筆時間:', 前一筆時間, '→', 前一筆時段);
+    console.log('現在時間:', 現在時間, '→', 現在時段);
+    console.log('是否同一時段:', 前一筆時段 === 現在時段);
+    
+    return 前一筆時段 === 現在時段;
+}
+
 // 檢查平板狀態並決定是否需要資訊長確認
 async function checkAndSubmit() {
     const 平板代號 = document.getElementById('平板代號').value;
@@ -412,5 +462,4 @@ function sendDataToGoogleSheet() {
                 loadingOverlay.style.display = 'none';
             }
         });
-
 }
